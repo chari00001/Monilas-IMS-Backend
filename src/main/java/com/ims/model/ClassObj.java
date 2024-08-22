@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "classes")
@@ -17,17 +16,17 @@ public class ClassObj {
   @Column(name = "id")
   private int id;
 
-  @Column(name = "className")
-  private String className;
+  @Column(name = "name", nullable = false, length = 100)
+  private String name;
 
-  @Column(name = "lecturerId")
+  @Column(name = "description", columnDefinition = "TEXT")
+  private String description;
+
+  @Column(name = "lecturer_id", nullable = false)
   private int lecturerId;
 
-  @Column(name = "startDate")
-  private LocalDate startDate;
-
-  @Column(name = "endDate")
-  private LocalDate endDate;
+  @Column(name = "credit", nullable = false)
+  private int credit;
 
   // Getters and Setters
   public int getId() {
@@ -38,12 +37,20 @@ public class ClassObj {
     this.id = id;
   }
 
-  public String getClassName() {
-    return className;
+  public String getName() {
+    return name;
   }
 
-  public void setClassName(String className) {
-    this.className = className;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public int getLecturerId() {
@@ -54,19 +61,11 @@ public class ClassObj {
     this.lecturerId = lecturerId;
   }
 
-  public LocalDate getStartDate() {
-    return startDate;
+  public int getCredit() {
+    return credit;
   }
 
-  public void setStartDate(LocalDate startDate) {
-    this.startDate = startDate;
-  }
-
-  public LocalDate getEndDate() {
-    return endDate;
-  }
-
-  public void setEndDate(LocalDate endDate) {
-    this.endDate = endDate;
+  public void setCredit(int credit) {
+    this.credit = credit;
   }
 }
