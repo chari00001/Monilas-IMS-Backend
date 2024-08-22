@@ -8,7 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "students") // Optional: specify the table name
+@Table(name = "students")
 public class Student {
 
   @Id
@@ -22,11 +22,17 @@ public class Student {
   @Column(name = "last_name", nullable = false, length = 50)
   private String lastName;
 
-  @Column(name = "email", nullable = false, unique = true, length = 100)
+  @Column(name = "email", nullable = false, unique = false, length = 100)
   private String email;
 
   @Column(name = "age")
   private int age;
+
+  @Column(name = "password", nullable = false, length = 255)
+  private String password;
+
+  @Column(name = "status", nullable = false, length = 20)
+  private String status;
 
   // Getters and setters
 
@@ -68,5 +74,21 @@ public class Student {
 
   public void setAge(int age) {
     this.age = age;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 }
