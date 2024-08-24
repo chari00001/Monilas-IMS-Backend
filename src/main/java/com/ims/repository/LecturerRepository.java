@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("null")
 public interface LecturerRepository extends JpaRepository<Lecturer, Integer> {
 
   Optional<Lecturer> findById(Integer id);
@@ -27,6 +28,6 @@ public interface LecturerRepository extends JpaRepository<Lecturer, Integer> {
   List<Lecturer> findByNameContaining(@Param("name") String name);
 
   // Custom query to find lecturers who are department heads
-  @Query("SELECT l FROM Lecturer l WHERE l.isDepartmentHead = true")
+  @Query("SELECT l FROM Lecturer l WHERE l.isDepartmentHead = 1")
   List<Lecturer> findDepartmentHeads();
 }

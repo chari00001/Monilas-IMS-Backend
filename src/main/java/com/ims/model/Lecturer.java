@@ -27,8 +27,8 @@ public class Lecturer {
   @Column(name = "department_id", nullable = false)
   private int departmentId;
 
-  @Column(name = "isDepartmentHead", nullable = false)
-  private boolean isDepartmentHead;
+  @Column(name = "is_department_head", nullable = false)
+  private int isDepartmentHead;
 
   public int getId() {
     return id;
@@ -70,11 +70,11 @@ public class Lecturer {
     this.departmentId = departmentId;
   }
 
-  public boolean isDepartmentHead() {
+  public int getIsDepartmentHead() {
     return isDepartmentHead;
   }
 
-  public void setDepartmentHead(boolean isDepartmentHead) {
+  public void setIsDepartmentHead(int isDepartmentHead) {
     this.isDepartmentHead = isDepartmentHead;
   }
 }

@@ -26,6 +26,8 @@ public class LecturerService {
 
   // Save a lecturer (create or update)
   public Lecturer saveLecturer(Lecturer lecturer) {
+    System.out.println("DEPARTMENT HEAD");
+    System.out.println(lecturer.getIsDepartmentHead());
     return lecturerRepository.save(lecturer);
   }
 
