@@ -62,7 +62,10 @@ public class StudentController {
 
   // New endpoint: Authenticate a student
   @PostMapping("/login")
-  public ResponseEntity<Map<String, Object>> login(@RequestParam String email, @RequestParam String password) {
+  public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> credentials) {
+    String email = credentials.get("email");
+    String password = credentials.get("password");
+
     Optional<Student> student = studentService.authenticate(email, password);
     if (student.isPresent()) {
       String token = jwtUtil.generateToken(email);
