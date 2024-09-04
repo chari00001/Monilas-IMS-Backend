@@ -50,4 +50,12 @@ public class LecturerService {
   public List<Lecturer> getDepartmentHeads() {
     return lecturerRepository.findDepartmentHeads();
   }
+
+  // Authenticate lecturer by email and password
+  public Optional<Lecturer> authenticateLecturer(String email, String password) {
+    // Optional: Implement password hashing and comparison logic here if passwords
+    // are stored as hashes
+
+    return lecturerRepository.authenticateLecturer(email, password);
+  }
 }

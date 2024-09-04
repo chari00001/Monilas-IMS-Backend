@@ -2,19 +2,28 @@ package com.ims.controller;
 
 import com.ims.model.Lecturer;
 import com.ims.service.LecturerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.List;
 
+import com.ims.util.JwtUtil;
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/lecturers")
 public class LecturerController {
 
   @Autowired
   private LecturerService lecturerService;
+
+  @Autowired
+  private JwtUtil jwtUtil;
 
   // Get all lecturers
   @GetMapping
@@ -77,5 +86,24 @@ public class LecturerController {
   @GetMapping("/department-heads")
   public List<Lecturer> getDepartmentHeads() {
     return lecturerService.getDepartmentHeads();
+  }
+
+  // Login endpoint for lecturer authentication
+  @PostMapping("/login")
+  public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> credentials) {
+    String email = credentials.get("email");
+    String password = credentials.get("password");
+
+    Optional<Lecturer> lecturer = lecturerService.authenticateLecturer(email, password);
+
+    if (lecturer.isPresent()) {
+      String token = jwtUtil.generateToken(email);
+      Map<String, Object> response = new HashMap<>();
+      response.put("token", token);
+      response.put("data", lecturer.get());
+      return ResponseEntity.ok(response);
+    } else {
+      return ResponseEntity.status(401).build();
+    }
   }
 }

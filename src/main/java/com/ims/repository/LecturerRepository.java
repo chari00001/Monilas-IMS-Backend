@@ -30,4 +30,8 @@ public interface LecturerRepository extends JpaRepository<Lecturer, Integer> {
   // Custom query to find lecturers who are department heads
   @Query("SELECT l FROM Lecturer l WHERE l.isDepartmentHead = 1")
   List<Lecturer> findDepartmentHeads();
+
+  // Custom query to authenticate lecturer by email and password
+  @Query("SELECT l FROM Lecturer l WHERE l.email = :email AND l.password = :password")
+  Optional<Lecturer> authenticateLecturer(@Param("email") String email, @Param("password") String password);
 }

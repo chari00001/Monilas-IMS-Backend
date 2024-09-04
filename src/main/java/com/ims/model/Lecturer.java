@@ -30,6 +30,11 @@ public class Lecturer {
   @Column(name = "is_department_head", nullable = false)
   private int isDepartmentHead;
 
+  @Column(name = "password", nullable = false, length = 255)
+  private String password; // New field for password
+
+  // Getters and Setters
+
   public int getId() {
     return id;
   }
@@ -76,5 +81,13 @@ public class Lecturer {
 
   public void setIsDepartmentHead(int isDepartmentHead) {
     this.isDepartmentHead = isDepartmentHead;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 }
